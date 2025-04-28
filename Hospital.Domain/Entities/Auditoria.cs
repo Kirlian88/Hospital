@@ -16,12 +16,12 @@ namespace Hospital.Domain.Entities
         public int IdAuditoria { get; set; }
 
         [Column("id_usuario")]
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
 
         [Column("tipo_operacion")]
         public string TipoOperacion { get; set; }
 
-        [Column("fecha_hora")]
+        [Column("fecha_hora", TypeName = "timestamp without time zone")]
         public DateTime FechaHora { get; set; }
 
         [Column("tabla_afectada")]

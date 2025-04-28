@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Hospital.Domain.Entities
 {
@@ -21,7 +22,7 @@ namespace Hospital.Domain.Entities
         [Column("id_medico")]
         public int IdMedico { get; set; }
 
-        [Column("fecha_registro")]
+        [Column("fecha_registro", TypeName = "timestamp without time zone")]
         public DateTime FechaRegistro { get; set; }
 
         [Column("diagnostico")]
@@ -38,9 +39,11 @@ namespace Hospital.Domain.Entities
 
         // Relaciones de navegación
         [ForeignKey("IdPaciente")]
+        [ValidateNever]
         public Paciente Paciente { get; set; }
 
         [ForeignKey("IdMedico")]
+        [ValidateNever]
         public Medico Medico { get; set; }
     }
 

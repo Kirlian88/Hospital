@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Hospital.Domain.Entities
 {
-
     [Table("usuarios")]
     public class Usuario
     {
@@ -42,18 +42,16 @@ namespace Hospital.Domain.Entities
         public string NombreUsuario { get; set; }
 
         [Column("contraseña")]
+        [JsonIgnore]
         public string Contraseña { get; set; }
 
         [Column("estado")]
         public bool Estado { get; set; }
 
-        [Column("fecha_registro")]
+        [Column("fecha_registro", TypeName = "timestamp without time zone")]
         public DateTime FechaRegistro { get; set; }
 
-        // Relaciones de navegación
-        public ICollection<Paciente> Pacientes { get; set; }
-        public ICollection<Familiar> Familiares { get; set; }
-        public ICollection<Medico> Medicos { get; set; }
+        // Collections
         public ICollection<Auditoria> Auditorias { get; set; }
     }
 }
